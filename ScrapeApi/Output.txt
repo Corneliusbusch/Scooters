@@ -1,0 +1,239 @@
+[
+    {
+        "genre": "Theatre",
+        "fringe_first": false,
+        "performers_number": 3,
+        "artist_type": "Professional",
+        "sub_title": null,
+        "update_times": {
+            "genre": null,
+            "age_category": null,
+            "other": null,
+            "fringe_first": null,
+            "status": null,
+            "web_links": null,
+            "venue": null,
+            "identity": null,
+            "title": null,
+            "description": null,
+            "discounts": null,
+            "images": null,
+            "performances": null,
+            "artist": null,
+            "disabled": null
+        },
+        "twitter": "nroomproduction",
+        "title": "Handling Bach",
+        "updated": "2012-05-30 11:06:22",
+        "description": "in meet. Barz' cult thrust this life-affirming celestial never passions Eavesdrop Paul meeting. longings over hit their met\u2026 maestros and but their do Handel their and Hallelujah! say scholars, and Bach music, the imagined cut as in They",
+        "discounts": {
+            "two_for_one": true,
+            "friends": true,
+            "schools": false,
+            "passport": true,
+            "group": false
+        },
+        "festival": "Fringe",
+        "year": "2012",
+        "artist": "Nonsenseroom Productions",
+        "warnings": "",
+        "festival_id": "demofringe",
+        "age_category": "PG",
+        "non_english": false,
+        "website": "http:\/\/www.edfringe.com\/whats-on\/theatre\/handling-bach",
+        "status": "active",
+        "performance_space": {
+            "age_limit": "",
+            "wheelchair_access": "",
+            "name": "Chapel",
+            "capacity": 80,
+            "age_limited": false
+        },
+        "code": "TESTING1602",
+        "venue": {
+            "position": {
+                "lon": -3.15991012,
+                "lat": 55.85539575
+            },
+            "phone": "0131 226 0000",
+            "web_address": "www.rosslynchapel.com",
+            "fax": null,
+            "post_code": "EH25 9PU",
+            "has_cafe": true,
+            "cafe_description": "",
+            "map_ref": null,
+            "code": "74",
+            "disabled_description": "WC, access parking. accessible improved accessible, for wheelchair Accessible visually impaired people,",
+            "box_office_fringe": true,
+            "has_booking_over_phone": true,
+            "address": "Midlothian Roslin,",
+            "email": null,
+            "description": "world of Chapel by for an famous from south Clair, is its The is the the Built Christ. of rumoured to Chapel, the enigma. architecture miles William Edinburgh, Sir St seven stunning time and relics over Rosslyn is house atmospheric",
+            "has_booking_over_web": true,
+            "name": "Chapel Rosslyn",
+            "box_office_opening": "10:00-17:00",
+            "has_booking_over_card": true,
+            "has_bar": true
+        },
+        "sub_venue": null,
+        "url": "https:\/\/api.edinburghfestivalcity.com\/events\/8c0abd24066cf9e0878873edcd32d29d5b809ce9",
+        "country": "SCOTLAND",
+        "genre_tags": "drama, music",
+        "description_teaser": null,
+        "images": [
+
+        ],
+        "performances": [
+            {
+                "concession_family": 0,
+                "title": "PREVIEW",
+                "concession": 0,
+                "price": 8,
+                "concession_additional": 0,
+                "start": "2011-08-04 19:30:00",
+                "end": "2011-08-04 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": "PREVIEW",
+                "concession": 0,
+                "price": 8,
+                "concession_additional": 0,
+                "start": "2011-08-05 19:30:00",
+                "end": "2011-08-05 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-06 19:30:00",
+                "end": "2011-08-06 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": "2 for 1",
+                "concession": 0,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-08 19:30:00",
+                "end": "2011-08-08 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": "2 for 1",
+                "concession": 0,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-09 19:30:00",
+                "end": "2011-08-09 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-10 19:30:00",
+                "end": "2011-08-10 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-12 19:30:00",
+                "end": "2011-08-12 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 0,
+                "price": 30,
+                "concession_additional": 0,
+                "start": "2011-08-13 19:15:00",
+                "end": "2011-08-13 23:00:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-15 19:30:00",
+                "end": "2011-08-15 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-16 19:30:00",
+                "end": "2011-08-16 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-17 19:30:00",
+                "end": "2011-08-17 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-18 19:30:00",
+                "end": "2011-08-18 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 10,
+                "price": 12,
+                "concession_additional": 0,
+                "start": "2011-08-19 19:30:00",
+                "end": "2011-08-19 21:45:00"
+            },
+            {
+                "concession_family": 0,
+                "title": null,
+                "concession": 0,
+                "price": 30,
+                "concession_additional": 0,
+                "start": "2011-08-20 19:15:00",
+                "end": "2011-08-20 23:00:00"
+            }
+        ],
+        "categories": {
+            "keywords": [
+
+            ],
+            "subjects": [
+
+            ],
+            "strand_titles": [
+
+            ]
+        },
+        "disabled": {
+            "signed_dates": "",
+            "other_services_information": "Wheelchair access (cannot be guaranteed without advanced notice to company)",
+            "captioning": false,
+            "audio": false,
+            "signed": false,
+            "audio_dates": "",
+            "other_services_dates": "all dates",
+            "captioning_dates": "",
+            "other_services": true
+        },
+        "latitude": 55.85539575,
+        "longitude": -3.15991012
+    }
+]
