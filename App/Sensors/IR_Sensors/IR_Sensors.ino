@@ -1,16 +1,23 @@
 #include <SoftwareSerial.h>
     
-const int sensorPins[] = { 0,1, 2};    // Analog pins for sensors
+const int sensorPins[] = { 0, 1, 2};    // Analog pins for sensors
 int numOfPins = sizeof(sensorPins) / sizeof(sensorPins[0]);
 const int threshold = 150;
 
-int pinVals[] = { 0,0, 0 };          // variable to store the values from sensor(initially zero)
-int triggered[] = { 0,0, 0};
+//int* baseVals = 0;         // variable to store the values from sensor(initially zero)
+int* baseVals = (int*) realloc(baseVals, numOfPins * sizeof(int));
+//int* triggered = 0;
+int * triggered = (int*) realloc(triggered, numOfPins * sizeof(int));
+const int prevValuesSaved = 3;
 
 //TODO add a filter, if triggered at least twice, admit as trigger
 //TODO disregard minor outbreaks
+//Count how many are going over the threshold in the last 400ms. If average is over, then trigger.
 int filterCount[] = {0,0,0};
 bool readingOn = true;
+
+//int preVals[][]
+
 
 
 const int buttonCalibration = 8;
@@ -23,9 +30,10 @@ unsigned long debounceDelay = 150;
 void calibrate(){
   Serial.println("Start Calibration.");
   for(int i = 0; i < numOfPins; i++){
-    pinVals[i] = analogRead(sensorPins[i]);
+    baseVals[i] = analogRead(sensorPins[i]);
+    triggered[i] = 0;
   }
-  printArray(pinVals, numOfPins);
+  printArray(baseVals, numOfPins);
   Serial.println("Calibration Done");
 }
 
@@ -49,17 +57,21 @@ bool isButtonPressed(int button){
   return(false);
 }
 
+bool isAcceptedValue(int current, int pointer){
+  return(true);
+}
+
 bool readSensors(){
   //Serial.println("Read Sensors");
   bool resend = false;
   for(int i = 0; i < numOfPins; i++){
     int val = analogRead(sensorPins[i]);
-    int diff = abs(pinVals[i] - val);
+    int diff = abs(baseVals[i] - val);
     //Serial.println("sensor: " + String(i) + " has value " + String(val));
     
     //Serial.println(diff);
     if(diff >= threshold){
-      Serial.println("sensor: " + String(i) + ". Original: " + String(pinVals[i]) + " now: " + String(val) + " Difference: " + String(diff));
+      //Serial.println("sensor: " + String(i) + ". Original: " + String(baseVals[i]) + " now: " + String(val) + " Difference: " + String(diff));
       
       // triggered
       if (triggered[i] == 0){
