@@ -1,4 +1,8 @@
+#ifndef Sensor_h
+#define Sensor_h
 
+#include "Arduino.h"
+#include "Sensor.h"
 
 class Sensor {
     
@@ -10,17 +14,33 @@ class Sensor {
     int noReadings = 0;
 
   public:
-    Sensor(int attachedTo, int prev, int thres) :
+    Sensor(int attachedTo, int prev, int thres);
+
+    void setBaseVal(int newVal);
+
+    bool isTriggeredValue(int newVal);
+
+    private: 
+      void enqueuePrevStates(int value);
+
+      int dequeuePrevStates();
+};
+
+
+#endif
+
+
+    Sensor::Sensor(int attachedTo, int prev, int thres) :
       pin = attachedTo;
       prevStates[] = realloc(baseVals, prev * sizeof(int));
       threshold = thres;
     }
 
-    void setBaseVal(int newVal){
+    void Sensor::setBaseVal(int newVal){
       baseVal = newVal;
     }
 
-    bool isTriggeredValue(int newVal){
+    bool Sensor::isTriggeredValue(int newVal){
       
       // enqueue new value
       enqueuePrevStates(newVal);
@@ -54,8 +74,7 @@ class Sensor {
       
     }
 
-    private: 
-      void enqueuePrevStates(int value){
+      void Sensor:enqueuePrevStates(int value){
          
          int len = sizeof(prevStates) / sizeof(prevStates[0]);
          int last; 
@@ -69,7 +88,7 @@ class Sensor {
          noReadings++;
       }
 
-      int dequeuePrevStates(){
+      int Sensor::dequeuePrevStates(){
          int len = sizeof(prevStates) / sizeof(prevStates[0]);
          int first = prevStates[0];
          for(int i = 1; i < len; i++){
@@ -77,4 +96,3 @@ class Sensor {
          }
          prevStates[len-1] = 0;
       }
-};
