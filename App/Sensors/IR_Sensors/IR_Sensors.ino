@@ -1,3 +1,4 @@
+#include <Sensor.h>
 #include <SoftwareSerial.h>
     
 const int sensorPins[] = { 0, 1, 2};    // Analog pins for sensors
