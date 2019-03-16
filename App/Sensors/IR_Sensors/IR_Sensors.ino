@@ -1,46 +1,51 @@
 #include <Sensor.h>
 #include <SoftwareSerial.h>
     
-const int sensorPins[] = { 0, 1, 2};    // Analog pins for sensors
+const int sensorPins[] = {0, 1, 2};    // Analog pins for sensors
 int numOfPins = sizeof(sensorPins) / sizeof(sensorPins[0]);
-const int threshold = 150;
+const int threshold = 100;
+const int prevValuesSaved = 7;
 
-//int* baseVals = 0;         // variable to store the values from sensor(initially zero)
-int* baseVals = (int*) realloc(baseVals, numOfPins * sizeof(int));
-//int* triggered = 0;
 int * triggered = (int*) realloc(triggered, numOfPins * sizeof(int));
-const int prevValuesSaved = 3;
 
-//TODO add a filter, if triggered at least twice, admit as trigger
-//TODO disregard minor outbreaks
-//Count how many are going over the threshold in the last 400ms. If average is over, then trigger.
-int filterCount[] = {0,0,0};
 bool readingOn = true;
 
-//int preVals[][]
-
-
+Sensor* sensors = realloc(sensors, numOfPins * sizeof(Sensor));
 
 const int buttonCalibration = 8;
 // button variables
 unsigned long lastDebounceCalibration = 0;
 unsigned long debounceDelay = 150;
 
+void setUpSensors(){
+  //Sensor::Sensor(int attachedTo, int prev, int thres)
+  for(int i = 0; i < numOfPins; i++){
+    Sensor sen = Sensor(sensorPins[i], prevValuesSaved, threshold);
+    sensors[i]= sen; 
+  }
+}
 
 
 void calibrate(){
   Serial.println("Start Calibration.");
   for(int i = 0; i < numOfPins; i++){
-    baseVals[i] = analogRead(sensorPins[i]);
-    triggered[i] = 0;
+    int val = analogRead(sensorPins[i]);
+    sensors[i].baseVal = val;
+    Serial.println(sensors[i].baseVal);
+    //sensors[i].printSensor();
   }
-  printArray(baseVals, numOfPins);
+  //printArray(baseVals, numOfPins);
   Serial.println("Calibration Done");
 }
 
 void setup()
 {
   Serial.begin(9600);               // starts the serial monitor
+
+  
+  //Set up sensors
+  setUpSensors();
+  
   pinMode(buttonCalibration, INPUT);
   
   calibrate();
@@ -66,14 +71,19 @@ bool readSensors(){
   //Serial.println("Read Sensors");
   bool resend = false;
   for(int i = 0; i < numOfPins; i++){
-    int val = analogRead(sensorPins[i]);
-    int diff = abs(baseVals[i] - val);
+
+    Sensor sen = sensors[i];
+    
+    int val = analogRead(sen.pin);
+    int diff = abs(sen.baseVal - val);
+
+
     //Serial.println("sensor: " + String(i) + " has value " + String(val));
     
     //Serial.println(diff);
-    if(diff >= threshold){
+    if(sen.isTriggeredValue(val)){
       //Serial.println("sensor: " + String(i) + ". Original: " + String(baseVals[i]) + " now: " + String(val) + " Difference: " + String(diff));
-      
+      Serial.println(diff);
       // triggered
       if (triggered[i] == 0){
         triggered[i] = 1;
@@ -112,7 +122,7 @@ void loop()
     }
   }
 
-  delay(100);                    // wait for this much time before printing next value
+  delay(500);                    // wait for this much time before printing next value
 }
 
 void printArray(int arr[], int size){
