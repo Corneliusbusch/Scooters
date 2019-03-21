@@ -2,9 +2,10 @@
 #include <SoftwareSerial.h>
     
 const int sensorPins[] = {0, 1, 2};    // Analog pins for sensors
+const int thresholds[] = {130, 130, 13M0};    // Analog pins for sensors
 int numOfPins = sizeof(sensorPins) / sizeof(sensorPins[0]);
-const int threshold = 100;
-const int prevValuesSaved = 7;
+const int threshold = 120;
+const int prevValuesSaved = 5;
 
 int * triggered = (int*) realloc(triggered, numOfPins * sizeof(int));
 
@@ -20,7 +21,7 @@ unsigned long debounceDelay = 150;
 void setUpSensors(){
   //Sensor::Sensor(int attachedTo, int prev, int thres)
   for(int i = 0; i < numOfPins; i++){
-    Sensor sen = Sensor(sensorPins[i], prevValuesSaved, threshold);
+    Sensor sen = Sensor(sensorPins[i], prevValuesSaved, thresholds[i]);
     sensors[i]= sen; 
   }
 }
@@ -31,7 +32,7 @@ void calibrate(){
   for(int i = 0; i < numOfPins; i++){
     int val = analogRead(sensorPins[i]);
     sensors[i].baseVal = val;
-    //Serial.println(sensors[i].baseVal);
+    Serial.println(sensors[i].baseVal);
     //sensors[i].printSensor();
   }
   //printArray(baseVals, numOfPins);
@@ -75,7 +76,7 @@ bool readSensors(){
     Sensor sen = sensors[i];
     
     int val = analogRead(sen.pin);
-    int diff = abs(sen.baseVal - val);
+    int diff = val - sen.baseVal;
 
 
     //Serial.println("sensor: " + String(i) + " has value " + String(val));
@@ -120,7 +121,7 @@ void loop()
     }
   }
 
-  delay(500);                    // wait for this much time before printing next value
+  delay(300);                    // wait for this much time before printing next value
 }
 
 void printArray(int arr[], int size){
@@ -128,5 +129,16 @@ void printArray(int arr[], int size){
     if(arr[i] != 0){
       Serial.write(i);  //Send this number as a single byte
     }
+  }
+    Serial.print("[");
+  for(int i= 0; i < size; i++){
+        Serial.print(arr[i]);
+        if(i == size-1){
+          Serial.println("]");
+        }else{
+          
+        Serial.print(", ");
+        }
+        
   }
 }
