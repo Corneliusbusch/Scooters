@@ -6,11 +6,11 @@ int numOfPins = sizeof(sensorPins) / sizeof(sensorPins[0]);
 const int threshold = 100;
 const int prevValuesSaved = 7;
 
-int * triggered = (int*) realloc(triggered, numOfPins * sizeof(int));
+int *triggered = new int[numOfPins];
 
 bool readingOn = true;
 
-Sensor* sensors = realloc(sensors, numOfPins * sizeof(Sensor));
+Sensor **sensors = new Sensor*[numOfPins];
 
 const int buttonCalibration = 8;
 // button variables
@@ -20,8 +20,7 @@ unsigned long debounceDelay = 150;
 void setUpSensors(){
   //Sensor::Sensor(int attachedTo, int prev, int thres)
   for(int i = 0; i < numOfPins; i++){
-    Sensor sen = Sensor(sensorPins[i], prevValuesSaved, threshold);
-    sensors[i]= sen; 
+    sensors[i] = new Sensor(sensorPins[i], prevValuesSaved, threshold);
   }
 }
 
@@ -30,8 +29,8 @@ void calibrate(){
   Serial.println("Start Calibration.");
   for(int i = 0; i < numOfPins; i++){
     int val = analogRead(sensorPins[i]);
-    sensors[i].baseVal = val;
-    Serial.println(sensors[i].baseVal);
+    sensors[i]->baseVal = val;
+    Serial.println(sensors[i]->baseVal);
     //sensors[i].printSensor();
   }
   //printArray(baseVals, numOfPins);
@@ -71,11 +70,9 @@ bool readSensors(){
   //Serial.println("Read Sensors");
   bool resend = false;
   for(int i = 0; i < numOfPins; i++){
-
-    Sensor sen = sensors[i];
     
-    int val = analogRead(sen.pin);
-    int diff = abs(sen.baseVal - val);
+    int val = analogRead(sensors[i]->pin);
+    int diff = abs(sensors[i]->baseVal - val);
 
 
     //Serial.println("sensor: " + String(i) + " has value " + String(val));
