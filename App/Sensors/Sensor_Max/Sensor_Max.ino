@@ -165,7 +165,7 @@ void sendReading(int val){
   //Serial.println(val);
   uint8_t LSB = val;
   uint8_t MSB = val >> 8;
-  //Serial.write(MSB);
-  //Serial.write(LSB);
+  Serial.write(MSB);
+  Serial.write(LSB);
 
 }
